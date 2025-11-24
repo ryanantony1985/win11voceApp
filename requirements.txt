@@ -1,0 +1,6 @@
+customtkinter
+SpeechRecognition
+pyaudio
+keyboard
+Pillow
+pyperclip
