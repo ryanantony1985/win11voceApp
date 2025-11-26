@@ -8,7 +8,7 @@ class VoiceTypingApp(ctk.CTk):
 
         # Window configuration
         # Window configuration
-        self.title("Voice Typing")
+        self.title("VoiKy")
         
         # Calculate center bottom position
         window_width = 280

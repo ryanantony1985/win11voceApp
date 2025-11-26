@@ -1,7 +1,8 @@
-# Windows 11 Voice Typing Clone - Setup & Usage Guide
+# VoiKy - Voice Typing App
+
 
 ## Overview
-This application is a professional clone of the Windows 11 Voice Typing overlay. It features:
+This application, **VoiKy**, is a professional voice typing overlay. It features:
 -   **Modern UI**: Compact, dark-themed, draggable overlay (Windows 11 style).
 -   **Universal Compatibility**: Works with ANY application (Word, Notepad, Browser, etc.) without stealing focus.
 -   **Instant Typing**: Uses clipboard injection for zero-latency text appearance.
@@ -39,7 +40,7 @@ Follow these steps to set up the application on a new machine:
 You can run the application in two ways:
 
 ### Option 1: One-Click Launch (Recommended)
-Double-click the included `run.bat` file. This handles the virtual environment activation automatically.
+Double-click the included `run_app.bat` file. This handles the virtual environment activation automatically.
 
 ### Option 2: Manual Launch
 In your terminal (with venv activated):
@@ -60,3 +61,10 @@ python main.py
 ## Troubleshooting
 -   **"Focus Stealing"**: If clicking the app takes focus away from your document, try running the app as **Administrator** (Right-click `run.bat` -> Run as Administrator). This is sometimes needed for the "No Activate" style to work perfectly on restricted systems.
 -   **Microphone Issues**: Ensure your privacy settings allow apps to access the microphone.
+
+## Building the Executable
+To create a standalone `.exe` file for distribution:
+1.  Double-click `build_app.bat`.
+2.  Wait for the process to complete.
+3.  The executable will be located in the `dist` folder as `VoiKy.exe`.
+
