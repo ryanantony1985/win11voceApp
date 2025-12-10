@@ -20,3 +20,9 @@ dist/
 build/
 
 app_icon.ico
+
+# Personal Store Info
+AppxManifest.xml
+build_app.bat
+*.pfx
+package_layout/

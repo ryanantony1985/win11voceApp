@@ -1,0 +1,116 @@
+@echo off
+cd /d "%~dp0"
+
+echo Checking prerequisites...
+set "SDK_BIN="
+set "SIGN_TOOL="
+
+where MakeAppx >nul 2>nul
+if %errorlevel% equ 0 (
+    set "SDK_BIN=MakeAppx"
+) else (
+    echo Searching for Windows SDK...
+    for /d %%i in ("C:\Program Files (x86)\Windows Kits\10\bin\*") do (
+        if exist "%%i\x64\MakeAppx.exe" set "SDK_BIN=%%i\x64\MakeAppx.exe"
+    )
+)
+
+if not defined SDK_BIN (
+    echo ERROR: MakeAppx.exe not found. Please install Windows SDK or add it to PATH.
+    pause
+    exit /b 1
+)
+
+where SignTool >nul 2>nul
+if %errorlevel% equ 0 (
+    set "SIGN_TOOL=SignTool"
+) else (
+    for /d %%i in ("C:\Program Files (x86)\Windows Kits\10\bin\*") do (
+        if exist "%%i\x64\SignTool.exe" set "SIGN_TOOL=%%i\x64\SignTool.exe"
+    )
+)
+
+if not defined SIGN_TOOL (
+    echo WARNING: SignTool.exe not found. MSIX signing might fail.
+)
+
+echo Checking Python availability...
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Python is not installed or not in PATH.
+    echo Attempting to install Python 3.11 via Winget...
+    winget install -e --id Python.Python.3.11
+    if %errorlevel% neq 0 (
+        echo Failed to install Python. Please install Python 3.11 manually from python.org.
+        pause
+        exit /b 1
+    )
+    echo Python installed successfully.
+    echo Please restart this script to apply changes to PATH.
+    pause
+    exit /b 0
+)
+
+echo Checking Python environment...
+if not exist venv (
+    echo Creating virtual environment...
+    python -m venv venv
+)
+
+call venv\Scripts\activate
+
+echo Checking dependencies...
+pip install -r requirements.txt
+
+echo Preparing icons...
+if not exist StoreLogo.ico (
+    echo Converting StoreLogo.png to StoreLogo.ico...
+    python -c "from PIL import Image; img = Image.open('StoreLogo.png'); img.save('StoreLogo.ico', format='ICO', sizes=[(256, 256)])"
+)
+
+echo Building VoiKy EXE...
+pyinstaller VoiKy.spec --noconfirm --clean
+
+echo Preparing MSIX package layout...
+if exist package_layout rmdir /s /q package_layout
+mkdir package_layout
+
+echo Copying application files...
+xcopy /s /e /y dist\VoiKy\* package_layout\
+copy /y StoreLogo.png package_layout\
+copy /y Square150x150Logo.png package_layout\
+copy /y Square44x44Logo.png package_layout\
+copy /y AppxManifest.xml package_layout\
+
+echo Checking for certificate...
+if not exist Voiky_Store_SelfSigned.pfx (
+    echo Creating self-signed certificate matching Store Publisher...
+    powershell -Command "New-SelfSignedCertificate -Type Custom -Subject 'CN=INSERT_PUBLISHER_ID' -KeyUsage DigitalSignature -FriendlyName 'Voiky Store Dev Cert' -CertStoreLocation 'Cert:\CurrentUser\My' -TextExtension @('2.5.29.37={text}1.3.6.1.5.5.7.3.3', '2.5.29.19={text}') -NotAfter (Get-Date).AddYears(1) | Export-PfxCertificate -FilePath 'Voiky_Store_SelfSigned.pfx' -Password (ConvertTo-SecureString 'password' -AsPlainText -Force)"
+    echo Certificate created: Voiky_Store_SelfSigned.pfx (Password: password)
+    echo IMPORTANT: You must install this certificate to 'Trusted People' store to install the MSIX locally.
+)
+
+echo Packaging MSIX...
+"%SDK_BIN%" pack /d package_layout /p Voiky.msix /o
+if %errorlevel% neq 0 (
+    echo MSIX packaging failed.
+    pause
+    exit /b %errorlevel%
+)
+
+echo Signing MSIX...
+if defined SIGN_TOOL (
+    "%SIGN_TOOL%" sign /fd SHA256 /a /f Voiky_Store_SelfSigned.pfx /p password Voiky.msix
+    if %errorlevel% neq 0 (
+        echo MSIX signing failed.
+        pause
+        exit /b %errorlevel%
+    )
+) else (
+    echo Skipping signing (SignTool not found).
+)
+
+echo Build complete!
+echo - EXE: dist\VoiKy\VoiKy.exe
+echo - MSIX: Voiky.msix
+pause
