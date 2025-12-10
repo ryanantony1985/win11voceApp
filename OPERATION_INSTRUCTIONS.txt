@@ -1,0 +1,101 @@
+Voiky is a smart voice-to-text assistant that types what you speak into any application.
+
+🎙️ FEATURES
+• Voice Typing: Speak naturally and watch your words appear on screen
+• Visual Feedback: Beautiful color-coded interface (Blue=Ready, Green=Listening, Amber=Typing)
+• Universal Compatibility: Works with Word, Notepad, Browsers, and any other text field
+• High Accuracy: Powered by Google's advanced speech recognition
+
+⚠️ REQUIREMENTS
+• Active Internet Connection (Required for speech recognition)
+• Microphone
+
+═══════════════════════════════════════════════════════════════════
+
+HOW TO USE:
+
+1. INTERNET REQUIRED
+   - Ensure you have an active internet connection
+   - Speech recognition requires internet to function
+
+2. START LISTENING
+   - Click the microphone button (🎤)
+   - Button turns GREEN when listening
+   - Status shows "🎙️ Listening..."
+   - Alternative: Press Ctrl+Alt+H hotkey from anywhere
+
+3. SPEAK CLEARLY
+   - Place your cursor in any text field on your screen
+   - Speak naturally and clearly
+   - Pause briefly when you finish a phrase
+
+4. AUTOMATIC TRANSCRIPTION
+   - When you pause, the app sends audio to Google's servers
+   - Button turns AMBER/ORANGE during transcription
+   - Status shows "⌨️ Typing..."
+   - Transcribed text appears at your cursor position
+
+5. STOP LISTENING
+   - Click the microphone button again
+   - Button returns to BLUE (idle state)
+   - Alternative: Press Ctrl+Alt+H hotkey
+
+═══════════════════════════════════════════════════════════════════
+
+VISUAL STATUS INDICATORS:
+
+🔵 BLUE   - Idle/Ready (not listening)
+🟢 GREEN  - Recording/Listening to your voice
+🟠 AMBER  - Translating/Typing text
+🔴 RED    - Error occurred
+
+═══════════════════════════════════════════════════════════════════
+
+IMPORTANT NOTES:
+
+⚠️ INTERNET CONNECTION IS REQUIRED
+   - The app uses Google Web Speech API for speech recognition
+   - Audio is transmitted to Google's servers for processing
+   - The app will not work without internet connection
+   - If internet is lost, you'll see "⚠️ No Internet" message
+
+⏱️ PAUSE TIMING
+   - When you pause speaking, transcription begins (1-2 seconds)
+   - During transcription, the app CANNOT listen to new speech
+   - If pauses are too long, there will be a delay between speaking and typing
+   - For best results, speak in short phrases with brief pauses
+
+🎯 CURSOR PLACEMENT
+   - Always place your cursor where you want text to appear
+   - The app types at the current cursor position
+   - Works in any text field: Word, Notepad, browsers, etc.
+
+🔒 PRIVACY
+   - Audio is sent to Google's servers for processing
+   - Google's privacy policy applies to transmitted audio
+   - No audio is stored locally by this application
+
+═══════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+❌ "⚠️ No Internet" Error
+   → Check your internet connection
+   → Verify firewall isn't blocking the app
+   → Try disconnecting and reconnecting
+
+❌ No Text Appears
+   → Ensure cursor is in a text field
+   → Check if the text field accepts input
+   → Try speaking more clearly or louder
+
+❌ App Not Listening
+   → Click the microphone button to start
+   → Check microphone permissions in Windows settings
+   → Verify your microphone is working
+
+═══════════════════════════════════════════════════════════════════
+
+KEYBOARD SHORTCUT:
+
+Ctrl+Alt+H - Toggle listening on/off from anywhere

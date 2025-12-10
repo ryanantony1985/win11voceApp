@@ -4,3 +4,4 @@ pyaudio
 keyboard
 Pillow
 pyperclip
+pyinstaller

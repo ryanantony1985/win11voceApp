@@ -1,0 +1,10 @@
+VoiKy converts speech to text and types it into any active application. runFullTrust is required because:
+
+1. The app must inject keyboard input across process boundaries to type into other applications (browsers, editors, etc.)
+2. Uses Python 'keyboard' library for system-wide keystroke simulation
+3. UWP sandbox prevents cross-application keyboard injection
+
+Without runFullTrust, VoiKy cannot perform its core function of typing recognized speech into other apps.
+
+[Character count: 429]
+

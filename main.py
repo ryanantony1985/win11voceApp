@@ -1,6 +1,5 @@
 from ui.window import VoiceTypingApp
 import keyboard
-import threading
 
 def main():
     app = VoiceTypingApp()

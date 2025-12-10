@@ -1,5 +1,4 @@
 import speech_recognition as sr
-import threading
 
 class SpeechEngine:
     def __init__(self):
@@ -40,8 +39,10 @@ class SpeechEngine:
                 # Speech was unintelligible
                 pass 
             except sr.RequestError as e:
+                # Network or API error
+                error_msg = "Internet connection required for speech recognition"
                 if on_error_callback:
-                    on_error_callback(f"Could not request results; {e}")
+                    on_error_callback(error_msg)
                 else:
                     print(f"Speech recognition error: {e}")
 
