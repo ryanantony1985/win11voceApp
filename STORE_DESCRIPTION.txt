@@ -1,0 +1,16 @@
+Voiky is a smart voice-to-text assistant that types what you speak into any application.
+
+🎙️ FEATURES
+• Voice Typing: Speak naturally and watch your words appear on screen
+• Visual Feedback: Beautiful color-coded interface (Blue=Ready, Green=Listening, Amber=Typing)
+• Universal Compatibility: Works with Word, Notepad, Browsers, and any other text field
+• High Accuracy: Powered by Google's advanced speech recognition
+
+⚠️ REQUIREMENTS
+• Active Internet Connection (Required for speech recognition)
+• Microphone
+
+HOW TO USE
+1. Click the microphone button or press Ctrl+Alt+H
+2. Speak clearly when the button is Green
+3. Pause to let Voiky type your text (Button turns Amber)

@@ -7,7 +7,6 @@ class VoiceTypingApp(ctk.CTk):
         super().__init__()
 
         # Window configuration
-        # Window configuration
         self.title("VoiKy")
         
         # Calculate center bottom position
@@ -70,8 +69,8 @@ class VoiceTypingApp(ctk.CTk):
             width=40,
             height=40,
             corner_radius=20,
-            fg_color="#3B8ED0",
-            hover_color="#36719F"
+            fg_color="#3498db",  # Blue for idle state
+            hover_color="#2980b9"
         )
         self.mic_button.grid(row=0, column=0, padx=(10, 5), pady=10)
 
@@ -145,8 +144,9 @@ class VoiceTypingApp(ctk.CTk):
 
     def start_listening(self):
         self.is_listening = True
-        self.mic_button.configure(fg_color="#e74c3c", hover_color="#c0392b") # Red when listening
-        self.status_label.configure(text="Listening...")
+        # Green when actively recording/listening
+        self.mic_button.configure(fg_color="#27ae60", hover_color="#229954") 
+        self.status_label.configure(text="🎙️ Listening...")
         
         # Start speech engine
         self.speech_engine.start_listening(
@@ -156,7 +156,8 @@ class VoiceTypingApp(ctk.CTk):
 
     def stop_listening(self):
         self.is_listening = False
-        self.mic_button.configure(fg_color="#3B8ED0", hover_color="#36719F") # Blue when idle
+        # Blue when idle/ready
+        self.mic_button.configure(fg_color="#3498db", hover_color="#2980b9")
         self.status_label.configure(text="Ready")
         
         # Stop speech engine
@@ -164,15 +165,32 @@ class VoiceTypingApp(ctk.CTk):
 
     def on_text_recognized(self, text):
         print(f"Recognized: {text}")
-        self.status_label.configure(text="Typing...")
+        # Amber/Orange when translating/typing
+        self.mic_button.configure(fg_color="#f39c12", hover_color="#e67e22")
+        self.status_label.configure(text="⌨️ Typing...")
         type_text(text)
-        # Reset status after a short delay
-        self.after(1000, lambda: self.status_label.configure(text="Listening..." if self.is_listening else "Ready"))
+        # Reset status after typing completes
+        self.after(800, lambda: self.mic_button.configure(
+            fg_color="#27ae60" if self.is_listening else "#3498db",
+            hover_color="#229954" if self.is_listening else "#2980b9"
+        ))
+        self.after(800, lambda: self.status_label.configure(
+            text="🎙️ Listening..." if self.is_listening else "Ready"
+        ))
 
     def on_error(self, error_msg):
-        print(error_msg)
-        self.status_label.configure(text="Error")
-        self.stop_listening()
+        print(f"Error: {error_msg}")
+        # Red for errors
+        self.mic_button.configure(fg_color="#e74c3c", hover_color="#c0392b")
+        
+        # Show specific error message
+        if "internet" in error_msg.lower() or "connection" in error_msg.lower():
+            self.status_label.configure(text="⚠️ No Internet")
+        else:
+            self.status_label.configure(text="⚠️ Error")
+        
+        # Auto-recover after 3 seconds
+        self.after(3000, lambda: self.stop_listening())
 
     def quit_app(self):
         self.stop_listening()

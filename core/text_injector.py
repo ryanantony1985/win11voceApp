@@ -1,6 +1,5 @@
 import keyboard
 import pyperclip
-import time
 
 def type_text(text):
     """
@@ -25,8 +24,6 @@ def type_text(text):
         
         # Restore clipboard (optional, might cause race condition if paste is slow)
         # For now, let's leave the text in clipboard or wait a bit
-        # time.sleep(0.1)
-        # pyperclip.copy(old_clipboard)
         
     except Exception as e:
         print(f"Error injecting text: {e}")

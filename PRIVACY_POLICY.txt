@@ -1,0 +1,54 @@
+PRIVACY POLICY FOR VOIKY
+
+Last Updated: December 10, 2025
+
+1. OVERVIEW
+VoiKy is a voice typing application developed by neowist. This privacy policy explains how VoiKy handles your data.
+
+2. DATA COLLECTION BY VOIKY
+VoiKy itself does NOT collect, store, or transmit any personal data to neowist or any third parties. Specifically:
+- No user information is collected by VoiKy
+- No analytics or telemetry data is gathered by VoiKy
+- No typed text is stored or transmitted by VoiKy
+
+3. THIRD-PARTY SERVICES - GOOGLE WEB SPEECH API
+VoiKy uses Google's Web Speech API to perform voice recognition. When you use VoiKy:
+- Audio from your microphone IS transmitted to Google's servers over the internet
+- Google processes the audio to convert speech to text
+- Google's privacy policy and terms of service apply to this data transmission
+- An internet connection IS REQUIRED for VoiKy to function
+
+For information about how Google handles your data, please review:
+- Google Privacy Policy: https://policies.google.com/privacy
+- Google Cloud Speech-to-Text Terms: https://cloud.google.com/terms
+
+4. MICROPHONE ACCESS
+VoiKy requires access to your microphone to perform voice recognition. Audio captured from your microphone is:
+- Transmitted to Google's servers for speech recognition processing
+- Processed according to Google's privacy policy
+- Not stored or accessed by VoiKy or neowist
+
+5. DATA STORAGE
+VoiKy does not create, maintain, or access any databases or files containing user data. The application only stores:
+- Application settings and preferences locally on your device
+- No personal or sensitive information
+
+6. DATA TRANSMITTED
+The only data transmitted by VoiKy is:
+- Audio data sent to Google Web Speech API for speech recognition
+- No other data is transmitted to any servers
+
+7. CHILDREN'S PRIVACY
+VoiKy does not knowingly collect any information from children. However, audio data is transmitted to Google's services, which have their own policies regarding children's data.
+
+8. CHANGES TO THIS POLICY
+We may update this privacy policy from time to time. Any changes will be reflected in the application and on our distribution channels.
+
+9. CONTACT
+For questions about this privacy policy, please contact:
+neowist
+Email: 
+
+10. YOUR CONSENT
+By using VoiKy, you consent to this privacy policy and acknowledge that your audio data will be transmitted to Google's Web Speech API for processing.
+

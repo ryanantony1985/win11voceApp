@@ -7,6 +7,7 @@ __pycache__/
 venv/
 env/
 .env
+myenv/
 
 # IDEs
 .vscode/
@@ -18,5 +19,14 @@ env/
 # PyInstaller
 dist/
 build/
+*.msix
+*.appx
+
 
 app_icon.ico
+
+# Personal Store Info
+AppxManifest.xml
+build_app.bat
+*.pfx
+package_layout/
